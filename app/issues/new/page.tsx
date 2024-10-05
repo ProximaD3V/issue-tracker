@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createIssueSchema, IssueForm } from '@/app/validationSchema';
+import ErrorMessage from '@/app/components/ErrorMessage';
 
 const NewIssuePage = () => {
   const router = useRouter();
@@ -35,11 +36,7 @@ const NewIssuePage = () => {
       )}
       <form className='space-y-3' onSubmit={handleSubmit(onSubmit)}>
         <TextField.Root placeholder='Title' {...register('title')} />
-        {errors.title && (
-          <Text color='red' as='p'>
-            {errors.title.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         {/* This just an example of Controller, TextArea supports register as field */}
         <Controller
           name='description'
@@ -48,11 +45,7 @@ const NewIssuePage = () => {
             <TextArea placeholder='Description' {...field} />
           )}
         />
-        {errors.description && (
-          <Text color='red' as='p'>
-            {errors.description.message}
-          </Text>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button>Submit New Issue</Button>
       </form>
     </div>
