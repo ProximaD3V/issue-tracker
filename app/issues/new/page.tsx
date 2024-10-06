@@ -1,13 +1,13 @@
 'use client';
-import { Button, Callout, TextArea, TextField, Text } from '@radix-ui/themes';
+import ErrorMessage from '@/app/components/ErrorMessage';
+import Spinner from '@/app/components/Spinner';
+import { createIssueSchema, IssueForm } from '@/app/validationSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, Callout, TextArea, TextField } from '@radix-ui/themes';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { createIssueSchema, IssueForm } from '@/app/validationSchema';
-import ErrorMessage from '@/app/components/ErrorMessage';
-import Spinner from '@/app/components/Spinner';
+import { Controller, useForm } from 'react-hook-form';
 
 const NewIssuePage = () => {
   const router = useRouter();
